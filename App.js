@@ -1,112 +1,68 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
-import React from 'react';
-import type {Node} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+export default function appBiscoitoDaSorte() {
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+  const [img, setImg] = useState(require("./src/biscoito.png"))
 
-const Section = ({children, title}): Node => {
-  const isDarkMode = useColorScheme() === 'dark';
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
+    <View style={styles.container}>
+      <Image style={styles.img} source={img}/>
+
+      <Text style={styles.textoFrase}>"Esta é a primeira frase!"</Text>
+
+      <TouchableOpacity style={styles.botao} onPress={() => alert("o")}>
+        <View style={styles.btnArea}>
+          <Text style={styles.btnTexto}>
+            Quebrar Biscoito
+          </Text>
+        </View>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={[styles.botao, {marginTop: 15, borderColor: "#121212"}]} onPress={() => alert("o")}>
+        <View style={styles.btnArea}>
+          <Text style={[styles.btnTexto, {color: "#121212"}]}>
+            Reiniciar Biscoito
+          </Text>
+        </View>
+      </TouchableOpacity>
+
     </View>
   );
-};
-
-const App: () => Node = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-};
+}
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
+  img: {
+    width: 230,
+    height: 230,
   },
-  sectionDescription: {
-    marginTop: 8,
+  textoFrase: {
+    fontSize: 20,
+    color: "#dd7b22",
+    margin: 30,
+    fontStyle: "italic",
+    textAlign: 'center',
+  },
+  botao: {
+    width: 230,
+    height: 50,
+    borderColor: "#dd7b22",
+    borderWidth: 2,
+    borderRadius: 25,
+  },
+  btnArea: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  btnTexto: {
     fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
-
-export default App;
+    fontWeight: 'bold',
+    color: "#dd7b22"
+  }
+})
